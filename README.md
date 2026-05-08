@@ -43,6 +43,12 @@ docker-compose up -d
 ```text
 https://localhost:8443
 ```
+5. Las rutas de la aplicación son las siguientes:
+
+```text
+https://localhost:8443/register
+https://localhost:8443/login
+```
 
 > En algunos navegadores aparecerá una advertencia porque el certificado es autofirmado. Puedes aceptar el riesgo para continuar.
 
