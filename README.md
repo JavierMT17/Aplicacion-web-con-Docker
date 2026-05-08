@@ -27,14 +27,18 @@ Una aplicación web sencilla con registro, inicio de sesión y cierre de sesión
 
 ## Cómo ejecutar
 
-1. Abre una terminal en `c:\Users\Javi\Desktop\Aplicacion Docker`.
-2. Ejecuta:
+1. Clona el repositorio: 
+```bash
+git clone https://github.com/JavierMT17/Aplicacion-web-con-Docker.git
+```
+2. Abre una terminal en el directorio clonado.
+3. Ejecuta:
 
-```powershell
-docker-compose up --build
+```bash
+docker-compose up -d
 ```
 
-3. Abre en tu navegador:
+4. Abre en tu navegador:
 
 ```text
 https://localhost:8443

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title if title else 'Autenticación' }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="header">
+      <div class="brand">Aplicación Segura</div>
+      <nav>
+        {% if session.username %}
+          <a href="{{ url_for('dashboard') }}">Panel</a>
+          <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Iniciar sesión</a>
+          <a href="{{ url_for('register') }}">Registrarse</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <main class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="alerts">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <p>Arquitectura básica con Docker, Flask y PostgreSQL.</p>
+    </footer>
+  </div>
+</body>
+</html>
