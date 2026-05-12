@@ -35,23 +35,25 @@ git clone https://github.com/JavierMT17/Aplicacion-web-con-Docker.git
 3. Ejecuta:
 
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
-4. Abre en tu navegador:
+Para ver la URL publica generada:
+
+```bash
+docker-compose logs -f cloudflared
+```
+
+Busca una linea con una URL parecida a:
 
 ```text
-https://localhost:8443
+https://nombre-aleatorio.trycloudflare.com
 ```
-5. Las rutas de la aplicación son las siguientes:
+![CloudFlare URL](./img/cloudflare_url.png)
 
-```text
-https://localhost:8443/register
-https://localhost:8443/login
-```
+> Esa URL cambiara cada vez que el contenedor del tunel se recree. Para un dominio fijo propio hace falta crear un tunnel permanente en Cloudflare y usar un token.
 
-> En algunos navegadores aparecerá una advertencia porque el certificado es autofirmado. Puedes aceptar el riesgo para continuar.
-
+4. Acceder a la web, para ello copia la URL https que te haya establecido CloudFlare en el recuadro de la imagen anterior y pegala en su navegador.
 ## Uso
 
 1. Registra un nuevo usuario desde la pantalla de registro.
@@ -64,3 +66,6 @@ https://localhost:8443/login
 - La base de datos PostgreSQL se monta en un volumen llamado `db_data`.
 - La aplicación crea tablas automáticamente cuando arranca.
 - El servidor web se expone con HTTPS en el puerto `8443`.
+- El `docker-compose.yml` incluye un servicio `cloudflare` que crea un tunel temporal de Cloudflare. No necesitas cuenta de Cloudflare ni configurar DNS para esta modalidad; Cloudflare genera una URL aleatoria `https://*.trycloudflare.com`.
+
+

@@ -10,6 +10,18 @@ services:
       - SECRET_KEY=supersecretkey
     restart: unless-stopped
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command:
+      - tunnel
+      - --no-autoupdate
+      - --url
+      - https://web:443
+      - --no-tls-verify
+    depends_on:
+      - web
+    restart: unless-stopped
+
   db:
     image: postgres:16
     environment:
